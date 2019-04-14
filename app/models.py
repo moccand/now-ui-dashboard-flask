@@ -8,6 +8,9 @@ Licence: MIT
 from app         import db
 from flask_login import UserMixin
 
+
+# TODO ajouter une classe "Page" pour gérer les pages de l'application
+
 class User(UserMixin, db.Model):
 
     id          = db.Column(db.Integer,     primary_key=True)

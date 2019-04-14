@@ -41,3 +41,11 @@ class DevelopmentConfig(Config):
 	DEBUG	= False
 	TESTING	= False
 
+class DevelopmentSqliteConfig(Config):
+
+	SQLALCHEMY_DATABASE_URI = "sqlite:////home/guillaume/WebApps/now-ui-dashboard-flask/test.db"
+	#pour ne pas tomber en 404 systématiquement
+	#SERVER_NAME   = 'localhost:5000'
+	DEBUG	= True
+	TESTING	= True
+

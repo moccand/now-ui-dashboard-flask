@@ -5,7 +5,7 @@ AppSeed - developed by RoSoft | www.RoSoftware.ro
 Licence: MIT
 """
 
-from models import User
+from .models import User
 from app import app, lm, db, bc
 from sqlalchemy import desc,or_
 
@@ -32,7 +32,7 @@ def create_user( email, username, password):
     # regex to check for e-mail syntax
     if not re.match("(^.+@{1}.+\.{1}.+)", str(email)):
         
-        print "Invalid e-mail. Please try again."
+        print("Invalid e-mail. Please try again.")
         return None
         #return "Invalid e-mail. Please try again."
 
@@ -45,5 +45,5 @@ def create_user( email, username, password):
 
     user.save()
 
-    print "user created id = " + str( user.id ) 
+    print ("user created id = " + str( user.id ) )
     return user 

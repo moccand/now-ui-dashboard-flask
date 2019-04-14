@@ -14,13 +14,13 @@ from flask_bcrypt     import Bcrypt
 from flask_mail       import Mail
 
 # load RES
-from assets import Assets as assets 
+from .assets import Assets as assets 
 
 app = Flask(__name__, static_url_path='/static')
 
 #Configuration of application, see configuration.py, choose one and uncomment.
 #app.config.from_object('app.configuration.ProductionConfig')
-app.config.from_object('app.configuration.DevelopmentConfig')
+app.config.from_object('app.configuration.DevelopmentSqliteConfig')
 
 # Expose globally the assets class
 app.add_template_global(assets, 'assets')
@@ -33,4 +33,4 @@ mail = Mail(app)
 
 lm.init_app(app)
 
-from app import views, models
+from . import views, models

@@ -11,10 +11,10 @@ from flask_login import login_user, logout_user, current_user, login_required
 from app         import app, lm, db, bc
 from sqlalchemy  import desc
 from flask_mail  import Message
-from models      import User
-from cli         import user_exists
+from .models      import User
+from .cli         import user_exists
 
-from forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm
 import os
 import re
 
@@ -33,6 +33,8 @@ def load_user(user_id):
 @app.route('/', defaults={'path': None})
 @app.route('/<path>')
 def index(path):
+
+    print(current_user)
     
     content = None 
 
@@ -96,7 +98,7 @@ def register():
 # Handle login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    
+
     # define login form here
     form = LoginForm(request.form)
 
@@ -140,6 +142,7 @@ def logout():
 # most common error codes have been added for now
 # TO DO:
 # they could use some styling so they don't look so ugly
+
 
 @app.errorhandler(401)
 def e401(e):
