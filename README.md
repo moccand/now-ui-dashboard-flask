@@ -1,14 +1,6 @@
 ## Now-ui-dashboard / Designed by [Creative-Tim](https://www.creative-tim.com) - Coded by [AppSeed.us](https://www.appseed.us/) 
 ### Enhanced [Flask](http://flask.pocoo.org/) WebApp
 
-
-
-<p align="center">
-  <img width="800" height="600" src="https://www.appseed.us/static/media/now-ui-dashboard/thumbnail.jpg">
-</p>
-
-
-
 ## Install & Set Up
 
 * Clone this repo
@@ -17,7 +9,7 @@
     * user: appseed
     * pass: appseed
 * Database provisioning:
-    * import SQL [devel/db_schema.sql] into 'appseed-flask' database   
+    * import SQL [devel/db_schema.sql] into 'appseed-flask' database  
     
 * Start the application (using Python):
     * python app.py
@@ -37,6 +29,10 @@
         * export FLASK_DEBUG=1
     * type: flask shell
 
+## Additional Info
+
+
+
 ## Features
 
 * basic authentication [ login / logout / register ]
@@ -44,11 +40,20 @@
 * Templating: [Jinja2](http://jinja.pocoo.org/docs/2.10/)
 * Front End engine: jQuery 
 
+
+## Additional Features (in dev)
+* in process  : Page list managed in Flask Admin
+* in process  : Page list in template depending login status (connected / not connected) and pages information (order)
+* not started : Enable/Disable Registration page
+* not started : Proxy URL for Elastic Search
+
 ## License MIT (for all components)
 
 * Backend:
-    * Backend enhancements: [AppSeed.us](https://www.appseed.us/)
+    * Backend enhancements (fork): [moccand]
+    * Backend enhancements (initial): [AppSeed.us](https://www.appseed.us/)
     * Backend: [Flask](http://flask.pocoo.org/)
+ 
 
 * Theme:
     * FREE License: [Now UI Dashboard](https://www.creative-tim.com/product/now-ui-dashboard) provided by [Creative-Tim](https://www.creative-tim.com)
