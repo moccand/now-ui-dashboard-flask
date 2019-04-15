@@ -13,6 +13,7 @@ from flask_login      import LoginManager
 from flask_bcrypt     import Bcrypt
 from flask_mail       import Mail
 
+
 # load RES
 from .assets import Assets as assets 
 
@@ -33,4 +34,11 @@ mail = Mail(app)
 
 lm.init_app(app)
 
+
 from . import views, models
+
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
+admin = Admin(app, name='dashboard', template_mode='bootstrap3')
+admin.add_view(ModelView(models.User, db.session))
+
