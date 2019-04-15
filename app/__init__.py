@@ -37,8 +37,15 @@ lm.init_app(app)
 
 from . import views, models
 
+
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
+
 admin = Admin(app, name='dashboard', template_mode='bootstrap3')
-admin.add_view(ModelView(models.User, db.session))
+
+class UserView(ModelView):
+    column_exclude_list = ['password', 'password_q']
+    column_search_list = ['user', 'name']
+
+admin.add_view(UserView(models.User, db.session))
 

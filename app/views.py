@@ -94,8 +94,8 @@ def register():
 
         return 'Registration ok, you can login ... '  
 
-    return render_template( 'auth/base.html',
-                            content = render_template('auth/register.html', form=form) )     
+    return render_template( 'base.html',
+                            content = render_template('auth/register.html', form=form), path='register' )
 
 # Handle login
 @app.route('/login', methods=['GET', 'POST'])
@@ -126,8 +126,8 @@ def login():
     #else:
     #    return "form not ok."
 
-    return render_template( 'auth/base.html',
-                            content = render_template('auth/login.html', form=form) )     
+    return render_template('base.html',
+                            content = render_template('auth/login.html', form=form), path='login')
 
 # map logout to logout
 # this function has 2 decorators

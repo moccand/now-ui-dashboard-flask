@@ -8,6 +8,7 @@ Licence: MIT
 import os
 from app     import app #import flask app
 from app     import db  #import db
+from app     import admin
 from app.cli import create_user  #import cli functions
 
 #----------------------------------------
