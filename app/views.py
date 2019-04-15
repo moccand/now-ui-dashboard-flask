@@ -40,9 +40,10 @@ def index(path):
     content = None 
 
     if path:
-        content = render_template( '/' + path + '.html')
+        content = render_template( '/' + path + '.html', path=path)
     else:
-        content = render_template( '/dashboard.html' )
+        path = 'dashboard'
+        content = render_template( '/dashboard.html', path=path)
 
     return render_template( '/base.html',
                             content = content,
