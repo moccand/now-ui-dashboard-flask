@@ -12,6 +12,8 @@ from app         import app, lm, db, bc
 from sqlalchemy  import desc
 from flask_mail  import Message
 
+import requests
+
 from .models      import User
 from .cli         import user_exists
 
@@ -31,12 +33,51 @@ def favicon():
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+
+@app.route('/search/<path:path>')
+def search(path):
+    # Reconstruir l'URL
+    url = '%s%s' % (app.config["ELASTIC_BASE_URL"], path)
+
+    # Récupérer les info du Referer
+    proxy_ref = proxy_ref_info(request)
+    headers = {"Referer": "http://%s%s" % (proxy_ref[0], proxy_ref[1])} if proxy_ref else {}
+
+    try :
+        return requests.get(url, stream=True, params=request.args, headers=headers)
+    except:
+        return "ERREUR : {}".format(url)
+
+
+def split_url(url):
+    """ split the given URL into tuple of (protocol, host, uri) """
+    proto, rest = url.split(':', 1)
+    rest = rest[2:].split('/', 1)
+    host, uri = (rest[0], rest[1] if len(rest) == 2 else (rest[0], ""))
+    return (proto, host, uri)
+
+
+def proxy_ref_info(request):
+    """Parses out Referer info indicating the requets is from a previously proxied page"""
+    ref = request.headers.get('referer')
+    if ref :
+        _, _, uri = split_url(ref)
+        if uri.find("/") < 0 :
+            return None
+        first, rest = uri.split("/", 1)
+        if first in "pd" :
+            parts = rest.split("/", 1)
+            r = (parts[0], parts[1]) if len(parts) == 2 else (parts[0], "")
+            return r
+    return None
+
+
+
+
 @app.route('/', defaults={'path': None})
 @app.route('/<path>')
 def index(path):
 
-    print(current_user)
-    
     content = None 
 
     if path:

@@ -32,6 +32,7 @@ class ProductionConfig(Config):
 	SERVER_NAME   = 'www.awesome.com' # <- your public domain here
 	DEBUG         = False
 	TESTING       = False
+	ELASTIC_BASE_URL = "http://monserveur-elastic/"
 
 class DevelopmentConfig(Config):
 
@@ -40,6 +41,7 @@ class DevelopmentConfig(Config):
 	SERVER_NAME   = 'localhost:5000'
 	DEBUG	= False
 	TESTING	= False
+	ELASTIC_BASE_URL = "http://monserveur/"
 
 class DevelopmentSqliteConfig(Config):
 
@@ -48,4 +50,5 @@ class DevelopmentSqliteConfig(Config):
 	#SERVER_NAME   = 'localhost:5000'
 	DEBUG	= True
 	TESTING	= True
+	ELASTIC_BASE_URL = "http://monserveur-elastic/"
 
